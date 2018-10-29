@@ -24,16 +24,21 @@ category_data = {
 time = ["0.0", "1.0", "2.0", "3.0", "4.0", "5.0", "6.0", "7.0", "8.0",
         "9.0", "10.0", "11.0", "12.0", "13.0", "14.0", "15.0", "16.0", "17.0"]
 
+
 # 1. Import Data
 # json_file = os.path.join(STATIC_DIR, 'json/game/variable_dictionary_round_wise.json')
 with open('sampleOutput.json') as f:
     data = json.load(f)
 
 # 2. Organize Data
+# Format:
+# {
+#     "data category": {"0.0": 400, "1.0":400}
+# }
 for t in time:
     for category in data[t]:
         if category in target_categories:
-            category_data[category].update({str(t):data[t][category]})
+            category_data[category].update({t:data[t][category]})
 
 # 3. Output Data - Separate Files
 for category in target_categories:
