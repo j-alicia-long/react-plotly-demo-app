@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import Plot from 'react-plotly.js';
 import plotData, {categories} from './datasets.js';
-import layout1 from './layouts.js';
+import layoutPop, {layoutGDP, layoutMoney} from './layouts.js';
+import TabManager from './TabManager';
 
 console.log(plotData);
 
@@ -15,7 +16,7 @@ class GraphDisplay extends Component {
     this.state = {
       dataset_left: plotData[0],
       dataset_right: rightYSet,
-      layout: layout1
+      layout: layoutPop
     };
 
     this.handleChangeLeft = this.handleChangeLeft.bind(this);
@@ -23,27 +24,23 @@ class GraphDisplay extends Component {
   }
 
   handleChangeLeft(event) {
-    // console.log("Left: ", categories[event.target.value])
-
     var selectedSet = Object.assign({}, plotData[event.target.value]);
     selectedSet.yaxis = 'y';
 
     this.setState({
       dataset_left: selectedSet,
       dataset_right: this.state.dataset_right,
-      layout: layout1
+      layout: layoutPop
     });
   }
   handleChangeRight(event) {
-    // console.log("Right: ", categories[event.target.value])
-
     var selectedSet = plotData[event.target.value];
     selectedSet.yaxis = 'y2';
 
     this.setState({
       dataset_left: this.state.dataset_left,
       dataset_right: selectedSet,
-      layout: layout1
+      layout: layoutPop
     });
   }
 
@@ -52,6 +49,18 @@ class GraphDisplay extends Component {
 
     return (
       <div>
+      <TabManager>
+        <div label="Population">
+          Population vs Year
+        </div>
+        <div label="GDP">
+          GDP vs Year
+        </div>
+        <div label="Money">
+          Money vs Year
+        </div>
+      </TabManager>
+
         <div id="Plot">
           <Plot
             data={[dataset_left, dataset_right]}
