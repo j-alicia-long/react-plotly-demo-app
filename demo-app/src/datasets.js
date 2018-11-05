@@ -11,11 +11,12 @@ var keyIndex = 0;
 for (var category in allData){
   // Append to plotData
   var dataset = {
+    mode: 'lines+markers',
+    name: category,
+    type: 'scatter',
     x: Object.keys(allData[category]),
     y: Object.values(allData[category]),
-    name: category,
-    mode: 'lines+markers',
-    type: 'scatter'
+    yaxis: "y"
   };
   plotData.push(dataset);
 
@@ -31,4 +32,3 @@ for (var category in allData){
 export default plotData;
 
 export const categories = categoryList;
-console.log(categoryList)
