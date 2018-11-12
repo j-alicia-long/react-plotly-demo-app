@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import GraphDisplay from './GraphDisplay.js';
-import plotData, {categories} from './datasets.js';
-import layoutPop, {layoutGDP, layoutMoney} from './layouts.js';
-import TabManager from './TabManager';
+//GraphDisplay contains the plot and dropdown menus
+import plotData, {categories} from './datasets.js'; //Import datasets
+import layoutPop, {layoutGDP, layoutMoney} from './layouts.js'; //import layouts
+import TabManager from './TabManager'; //Manages active tabs
 
 console.log(plotData);
 
+//GraphManager contains all tabs of GraphDisplays
 class GraphManager extends Component {
   constructor(props) {
     super(props);

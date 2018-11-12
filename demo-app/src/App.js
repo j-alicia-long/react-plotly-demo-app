@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import GraphManager from './GraphManager.js';
-
+//GraphManager contains all tabs of GraphDisplays
 
 class App extends Component {
   render() {

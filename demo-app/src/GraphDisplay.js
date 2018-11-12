@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Plot from 'react-plotly.js';
 
-
+//GraphDisplay contains the plot and dropdown menus
 class GraphDisplay extends Component {
   static propTypes = {
     dataSource: PropTypes.instanceOf(Array).isRequired,

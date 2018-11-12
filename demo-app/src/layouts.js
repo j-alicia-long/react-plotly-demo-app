@@ -1,5 +1,6 @@
 // Plot.ly custom layouts
 
+// Layout: Population vs. Year
 const layoutPop = {
   title: 'Population vs. Year',
   xaxis: {
@@ -24,6 +25,7 @@ const layoutPop = {
 
 export default layoutPop;
 
+// Layout: GDP vs. Year
 export const layoutGDP = {
   title: 'GDP vs. Year',
   xaxis: {
@@ -46,6 +48,7 @@ export const layoutGDP = {
   }
 };
 
+// Layout: Money vs. Year
 export const layoutMoney = {
   title: 'Money vs. Year',
   xaxis: {
