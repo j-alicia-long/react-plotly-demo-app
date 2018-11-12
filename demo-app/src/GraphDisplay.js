@@ -1,22 +1,25 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Plot from 'react-plotly.js';
-import plotData, {categories} from './datasets.js';
-import layoutPop, {layoutGDP, layoutMoney} from './layouts.js';
-import TabManager from './TabManager';
 
-console.log(plotData);
 
 class GraphDisplay extends Component {
+  static propTypes = {
+    dataSource: PropTypes.instanceOf(Array).isRequired,
+  }
+
   constructor(props) {
     super(props);
 
-    var rightYSet = Object.assign({}, plotData[0]);
+    const {dataSource, dataCategories, plotLayout} = this.props;
+
+    var rightYSet = Object.assign({}, dataSource[0]);
     rightYSet.yaxis = 'y2';
 
     this.state = {
-      dataset_left: plotData[0],
+      dataset_left: dataSource[0],
       dataset_right: rightYSet,
-      layout: layoutPop
+      layout: plotLayout
     };
 
     this.handleChangeLeft = this.handleChangeLeft.bind(this);
@@ -24,23 +27,23 @@ class GraphDisplay extends Component {
   }
 
   handleChangeLeft(event) {
-    var selectedSet = Object.assign({}, plotData[event.target.value]);
+    var selectedSet = Object.assign({}, this.props.dataSource[event.target.value]);
     selectedSet.yaxis = 'y';
 
     this.setState({
       dataset_left: selectedSet,
       dataset_right: this.state.dataset_right,
-      layout: layoutPop
+      layout: this.props.plotLayout
     });
   }
   handleChangeRight(event) {
-    var selectedSet = plotData[event.target.value];
+    var selectedSet = Object.assign({}, this.props.dataSource[event.target.value]);
     selectedSet.yaxis = 'y2';
 
     this.setState({
       dataset_left: this.state.dataset_left,
       dataset_right: selectedSet,
-      layout: layoutPop
+      layout: this.props.plotLayout
     });
   }
 
@@ -49,18 +52,6 @@ class GraphDisplay extends Component {
 
     return (
       <div>
-      <TabManager>
-        <div label="Population">
-          Population vs Year
-        </div>
-        <div label="GDP">
-          GDP vs Year
-        </div>
-        <div label="Money">
-          Money vs Year
-        </div>
-      </TabManager>
-
         <div id="Plot">
           <Plot
             data={[dataset_left, dataset_right]}
@@ -71,10 +62,14 @@ class GraphDisplay extends Component {
         <label>
           Select datasets to display:
           <select onChange={this.handleChangeLeft}>
-            {listItems}
+            {this.props.dataCategories.map((category) =>
+              <option key={category.key} value={category.key}>{category.name}</option>
+            )}
           </select>
           <select onChange={this.handleChangeRight}>
-            {listItems}
+            {this.props.dataCategories.map((category) =>
+              <option key={category.key} value={category.key}>{category.name}</option>
+            )}
           </select>
         </label>
 
@@ -83,8 +78,5 @@ class GraphDisplay extends Component {
   }
 }
 
-const listItems = categories.map((category) =>
-  <option key={category.key} value={category.key}>{category.name}</option>
-);
 
 export default GraphDisplay;

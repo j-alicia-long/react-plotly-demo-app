@@ -33,7 +33,7 @@ class TabManager extends Component {
 
     return (
       <div className="tabs">
-        <ol className="tab-list">
+        <ul className="tab-list">
           {children.map((child) => {
             const { label } = child.props;
 
@@ -46,7 +46,7 @@ class TabManager extends Component {
               />
             );
           })}
-        </ol>
+        </ul>
         <div className="tab-content">
           {children.map((child) => {
             if (child.props.label !== activeTab) return undefined;
