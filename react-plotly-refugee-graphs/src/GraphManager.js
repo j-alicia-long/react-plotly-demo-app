@@ -9,9 +9,6 @@ console.log(plotData);
 
 //GraphManager contains all tabs of GraphDisplays
 class GraphManager extends Component {
-  constructor(props) {
-    super(props);
-  }
 
   render() {
 

@@ -11,7 +11,7 @@ class GraphDisplay extends Component {
   constructor(props) {
     super(props);
 
-    const {dataSource, dataCategories, plotLayout} = this.props;
+    const {dataSource, plotLayout} = this.props;
 
     var rightYSet = Object.assign({}, dataSource[0]);
     rightYSet.yaxis = 'y2';

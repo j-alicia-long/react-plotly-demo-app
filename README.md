@@ -1,6 +1,6 @@
 # Refugee Sim R&D
 
-## react-plotly-demo-app
+## react-plotly-refugee-graphs
 A demo app for graphing datasets using the react-plotly library. Custom styling not included.
 
 ## refugee-flowchart
