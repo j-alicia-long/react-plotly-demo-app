@@ -1,0 +1,155 @@
+<html>
+
+<head>
+  <title>PlotlyJS Demo App</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+  <!-- Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+  <!-- Plotly.js -->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="row">
+      <h2>PlotlyJS Demo App</h2>
+    </div>
+
+    <div class="row">
+      <div id="graph1"></div>
+    </div>
+
+    <div class="row">
+
+      <div class="col-md-6">
+
+        <div class="dropdown">
+          <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Left Axis Plot
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#" onclick="updateData('left', 'dataset1')">Dataset 1</a>
+            <a class="dropdown-item" href="#" onclick="updateData('left', 'dataset2')">Dataset 2</a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="col-md-6">
+
+        <div class="dropdown">
+          <button class="btn btn-warning dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Right Axis Plot
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#" onclick="updateData('right', 'dataset1')">Dataset 1</a>
+            <a class="dropdown-item" href="#" onclick="updateData('right', 'dataset2')">Dataset 2</a>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="row">
+      <div id="graph2"></div>
+    </div>
+
+  </div>
+
+
+
+<script>
+
+    var dataset1 = {
+      x: [1, 2, 3, 4],
+      y: [10, 15, 13, 17],
+      name: 'Dataset 1',
+      mode: 'lines+markers',
+      type: 'scatter'
+    };
+    var dataset2 = {
+      x: [1, 2, 3, 4],
+      y: [16, 5, 11, 9],
+      name: 'Dataset 2',
+      mode: 'lines+markers',
+      type: 'scatter'
+    };
+    var dataset3 = {
+      x: [1, 2, 3, 4],
+      y: [12, 9, 15, 12],
+      mode: 'lines+markers',
+      name: 'Dataset 3'
+    };
+
+    var data = [dataset1, dataset2];
+
+    var layout1 = {
+      title: 'Original Graph',
+      xaxis: {
+        title: 'x-axis title'
+      },
+      yaxis: {
+        title: 'y-axis title',
+        rangemode: 'tozero',
+        showline: true,
+        zeroline: true
+      }
+    };
+
+    var layout2 = {
+      title: 'Modified Graph',
+      xaxis: {
+        title: 'x-axis title'
+      },
+      yaxis: {
+        title: 'y-axis title',
+        rangemode: 'tozero',
+        showline: true,
+        zeroline: true
+      }
+    };
+
+    Plotly.newPlot('graph1', data, layout1);
+
+    function updateData(side, selected){
+      var dataset;
+      switch(selected) {
+          case 'dataset1':
+              dataset = dataset1;
+              break;
+          case 'dataset2':
+              dataset = dataset2;
+              break;
+          case 'dataset3':
+              dataset = dataset3;
+              break;
+          default:
+              dataset = [];
+      }
+
+      var newData = data;
+      if(side == 'left'){
+        newData[0] = dataset;
+      } else if (side == 'right') {
+        newData[1] = dataset;
+      }
+
+      console.log(newData);
+
+      Plotly.newPlot('graph2', newData, layout2); //there may be a better way to update
+    }
+
+</script>
+
+</body>
+
+
+</html>

@@ -42,9 +42,9 @@ for t in time:
 
 # 3. Output Data - Separate Files
 for category in target_categories:
-    with open(category+".json", "w") as fout:
+    with open("extracted_data/"+category+".json", "w") as fout:
         json.dump(category_data[category], fout)
 
 # 4. Output Data - One File
-with open("allParsedOutput.json", "w") as fout:
+with open("extracted_data/allParsedOutput.json", "w") as fout:
     json.dump(category_data, fout)

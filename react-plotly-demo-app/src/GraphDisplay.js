@@ -26,6 +26,7 @@ class GraphDisplay extends Component {
     this.handleChangeRight = this.handleChangeRight.bind(this);
   }
 
+  // Updates left dataset on plot when left dropdown is changed
   handleChangeLeft(event) {
     var selectedSet = Object.assign({}, this.props.dataSource[event.target.value]);
     selectedSet.yaxis = 'y';
@@ -36,6 +37,7 @@ class GraphDisplay extends Component {
       layout: this.props.plotLayout
     });
   }
+  // Updates right dataset on plot when right dropdown is changed
   handleChangeRight(event) {
     var selectedSet = Object.assign({}, this.props.dataSource[event.target.value]);
     selectedSet.yaxis = 'y2';
